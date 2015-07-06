@@ -1,0 +1,28 @@
+{
+  "name": "react-context",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/context.js",
+  "dependencies": {
+    "react": "^0.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casesandberg/react-context.git"
+  },
+  "keywords": [
+    "react",
+    "context",
+    "react-context"
+  ],
+  "author": "case <case@casesandberg.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/casesandberg/react-context/issues"
+  },
+  "homepage": "https://github.com/casesandberg/react-context#readme"
+}
