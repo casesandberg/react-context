@@ -74,8 +74,16 @@ module.exports = class Code extends ReactCSS.Component {
 
   render() {
     var code = markdown.getBody( this.props.file );
+    var args = markdown.getArgs( this.props.file );
     var colorCoded = markdown.renderCode('```\n' + code + '```').trim();
-    var lines = colorCoded.split('\n').length;
+    var lineCount = colorCoded.split('\n').length;
+
+    var lines;
+    if (args.lineDecoration) {
+      lines = args.lineDecoration;
+    } else {
+      lines = [1, 2, 3, 4, 5];
+    }
 
     return (
       <div>
@@ -99,7 +107,7 @@ module.exports = class Code extends ReactCSS.Component {
 
         <Tile is="Tile">
           <div is="numbers">
-            1
+            { lines }
           </div>
           <div is="center">
             <style>{`

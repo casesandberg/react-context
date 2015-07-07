@@ -78,7 +78,7 @@ module.exports = class Body extends ReactCSS.Component {
               <div />
               <div is="docs">
                 <Raised>
-                  <Code file={"foo bar"} />
+                  <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} />
                 </Raised>
               </div>
             </Grid>

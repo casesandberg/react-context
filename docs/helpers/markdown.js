@@ -1,3 +1,6 @@
+/* jshint node: true, esnext: true */
+"use strict";
+
 var Remarkable = require('remarkable');
 var hljs = require('highlight.js');
 var regularMd = new Remarkable();
@@ -28,8 +31,10 @@ module.exports = {
     var args = {};
     if (code.indexOf('---') > -1) {
       var match = /---([\s\S]*?)---\n([\s\S]*)/.exec(code);
+      var argSplit = match[1].trim().split('\n');
 
-      for (var arg in match[1].trim().split('\n')){
+      for (var i = 0; i < argSplit.length; i++) {
+        var arg = argSplit[i];
         var regex = /(.+?): (.+)/.exec(arg);
         args[regex[1]] = regex[2];
       }
