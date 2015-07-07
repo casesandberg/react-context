@@ -23,7 +23,7 @@ config = {
         }, {
           test: /\.jsx$/,
           exclude: /node_modules/,
-          loaders: ['react-hot-loader', 'jsx-loader', 'babel-loader']
+          loaders: ['react-hot-loader', 'jsx-loader', 'babel-loader', 'react-map-styles']
         }, {
           test: /\.css$/,
           loaders: [ 'style-loader', 'css-loader' ]

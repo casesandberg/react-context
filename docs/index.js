@@ -4,10 +4,10 @@
 var React = require('react');
 require('../node_modules/normalize.css/normalize.css');
 
-var Root = require('../examples/Root');
+var Home = require('./components/home/Home');
 
 
 React.render(
-  React.createElement(Root),
+  React.createElement(Home),
   document.getElementById('root')
 );
