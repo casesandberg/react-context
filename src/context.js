@@ -26,7 +26,7 @@ var context = function(Component) {
 
     getChildContext: function() {
       return {
-        pointer: 'mouse',
+        pointer: (('ontouchstart' in window) || (window.DocumentTouch && document instanceof DocumentTouch) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) ? 'touch' : 'mouse',
         density: window.devicePixelRatio,
         width: this.state.width,
         height: this.state.height,
