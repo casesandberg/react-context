@@ -18,7 +18,7 @@ var context = function(Component) {
 
     childContextTypes: {
       pointer: React.PropTypes.string,
-      pixelDensity: React.PropTypes.number,
+      density: React.PropTypes.number,
       width: React.PropTypes.number,
       height: React.PropTypes.number,
       language: React.PropTypes.string
@@ -27,7 +27,7 @@ var context = function(Component) {
     getChildContext: function() {
       return {
         pointer: 'mouse',
-        pixelDensity: 1.5,
+        density: window.devicePixelRatio,
         width: this.state.width,
         height: this.state.height,
         language: window.navigator.userLanguage || window.navigator.language
@@ -50,6 +50,8 @@ var context = function(Component) {
     },
 
     render: function(){
+      console.log(window);
+      console.log();
       return React.createElement(Component, this.props);
     }
   });
@@ -60,7 +62,7 @@ var context = function(Component) {
 context.types = function(){
   return {
     pointer: React.PropTypes.string,
-    pixelDensity: React.PropTypes.number,
+    density: React.PropTypes.number,
     width: React.PropTypes.number,
     height: React.PropTypes.number,
     language: React.PropTypes.string
