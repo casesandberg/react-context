@@ -1,4 +1,4 @@
-/* jshint node: true, esnext: true */
+/* jshint node: true, esnext: true, browser: true */
 "use strict";
 
 var React = require('react');
@@ -12,7 +12,8 @@ var context = function(Component) {
     getInitialState: function() {
       return {
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
+        focus: document.hasFocus()
       };
     },
 
@@ -21,7 +22,8 @@ var context = function(Component) {
       density: React.PropTypes.number,
       width: React.PropTypes.number,
       height: React.PropTypes.number,
-      language: React.PropTypes.string
+      language: React.PropTypes.string,
+      focus: React.PropTypes.bool
     },
 
     getChildContext: function() {
@@ -30,16 +32,21 @@ var context = function(Component) {
         density: window.devicePixelRatio,
         width: this.state.width,
         height: this.state.height,
-        language: window.navigator.userLanguage || window.navigator.language
+        language: window.navigator.userLanguage || window.navigator.language,
+        focus: this.state.focus
       };
     },
 
     componentDidMount: function() {
       window.addEventListener('resize', this.handleResize, false);
+      window.addEventListener('focus', this.handleFocus, false);
+      window.addEventListener('blur', this.handleFocus, false);
     },
 
     componentWillUnmount: function() {
       window.removeEventListener('resize', this.handleResize, false);
+      window.removeEventListener('focus', this.handleFocus, false);
+      window.removeEventListener('blur', this.handleFocus, false);
     },
 
     handleResize: function() {
@@ -49,9 +56,14 @@ var context = function(Component) {
       });
     },
 
+    handleFocus: function(e){
+      this.setState({
+        focus: e.type === 'focus' ? true : false
+      });
+    },
+
     render: function(){
-      console.log(window);
-      console.log();
+      // console.log(window);
       return React.createElement(Component, this.props);
     }
   });
@@ -65,7 +77,8 @@ context.types = function(){
     density: React.PropTypes.number,
     width: React.PropTypes.number,
     height: React.PropTypes.number,
-    language: React.PropTypes.string
+    language: React.PropTypes.string,
+    focus: React.PropTypes.bool
   };
 };
 

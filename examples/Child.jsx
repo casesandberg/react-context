@@ -13,7 +13,7 @@ var Child = React.createClass({
     var contexts = [];
     for (var key in this.context){
       var value = this.context[key];
-      contexts.push(<div key={ key }><span>{ key }:</span> <span>{ value }</span></div>);
+      contexts.push(<div key={ key }><span>{ key }:</span> <span>{ value.toString() }</span></div>);
     }
     return(
       <div>
