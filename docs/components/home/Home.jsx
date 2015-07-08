@@ -19,12 +19,12 @@ class Home extends ReactCSS.Component {
           height: '64px'
         },
         feature: {
-          boxShadow: 'inset 0 -2px 0 0 #7F9BB3, inset 0 2px 0 0 #7F9BB3'
+          boxShadow: 'inset 0 -1px 0 0 rgba(255,255,255,.2), inset 0 1px 0 0 rgba(255,255,255,.2)'
         },
         body: {},
 
         title: {
-          paddingTop: '70px',
+          paddingTop: '100px',
           paddingBottom: '35px',
           fontSize: '40px',
           color: '#fff'
@@ -58,11 +58,21 @@ class Home extends ReactCSS.Component {
 \}
 `;
 
+    var bg, transition;
+    if (this.context.focus) {
+      bg = '#2A5881';
+      transition = 'background 400ms linear';
+    } else {
+      bg = '#666';
+      transition = 'background 1000ms linear';
+    }
+
     return (
       <div>
         <style>{`
           html, body {
-            background: #2A5881;
+            background: ${ bg };
+            transition: ${ transition };
           }
         `}</style>
 
