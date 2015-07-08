@@ -3,13 +3,14 @@
 
 var React = require('react');
 var ReactCSS = require('reactcss');
+var context = require('react-context');
 
 var Container = require('../layout/Container');
 var Grid = require('../layout/Grid');
-var Code = require('../common/Code')
+var Code = require('../common/Code');
 var { Raised } = require('react-material-design');
 
-module.exports = class Body extends ReactCSS.Component {
+class Home extends ReactCSS.Component {
 
   classes() {
     return {
@@ -48,12 +49,12 @@ module.exports = class Body extends ReactCSS.Component {
 
     var snippet =
 `this.context \= \{
-  pointer: 'mouse', // the device's primary input
-  density: 2, // The screen pixel density
-  width: 716, // The screen width (try resizing)
-  height: 650, // The screen height (try resizing)
-  language: 'en-US', // The language thats set
-  focus: true // Window is focused (click your desktop)
+  pointer: '${ this.context.pointer }', // the device's primary input
+  density: ${ this.context.density }, // The screen pixel density
+  width: ${ this.context.width }, // The screen width (try resizing)
+  height: ${ this.context.height }, // The screen height (try resizing)
+  language: '${ this.context.language }', // The language thats set
+  focus: ${ this.context.focus.toString() } // Window is focused (click your desktop)
 \}
 `;
 
@@ -102,3 +103,7 @@ module.exports = class Body extends ReactCSS.Component {
     )
   }
 };
+
+Home.contextTypes = context.types();
+
+module.exports = Home
