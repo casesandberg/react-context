@@ -82,7 +82,10 @@ module.exports = class Code extends ReactCSS.Component {
     if (args.lineDecoration) {
       lines = args.lineDecoration;
     } else {
-      lines = [1, 2, 3, 4, 5];
+      lines = [];
+      for (var i = 1; i < lineCount; i++) {
+        lines.push(<div key={ i }>{ i }</div>);
+      }
     }
 
     return (

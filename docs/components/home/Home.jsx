@@ -18,8 +18,7 @@ module.exports = class Body extends ReactCSS.Component {
           height: '64px'
         },
         feature: {
-          boxShadow: 'inset 0 -2px 0 0 #7F9BB3, inset 0 2px 0 0 #7F9BB3',
-          paddingBottom: '100px'
+          boxShadow: 'inset 0 -2px 0 0 #7F9BB3, inset 0 2px 0 0 #7F9BB3'
         },
         body: {},
 
@@ -29,21 +28,35 @@ module.exports = class Body extends ReactCSS.Component {
           fontSize: '40px',
           color: '#fff'
         },
-        snippet: {
-          height: '180px',
-          boxShadow: 'inset 0 0 0 2px #7F9BB3',
-          borderRadius: '2px',
-          background: '#2A5881'
+        Snippet: {
+          radius: '2px 2px 0 0',
+          background: '#EEEEEE'
         },
-
-        docs: {
-          marginTop: '-55px'
+        docsWrap: {
+          overflow: 'hidden',
+          padding: '0 5px 5px',
+          margin: '0 -5px'
+        },
+        Docs: {
+          radius: '0 0 2px 2px'
         }
       }
     };
   }
 
   render(){
+
+    var snippet =
+`this.context \= \{
+  pointer: 'mouse', // the device's primary input
+  density: 2, // The screen pixel density
+  width: 716, // The screen width (try resizing)
+  height: 650, // The screen height (try resizing)
+  language: 'en-US', // The language thats set
+  focus: true // Window is focused (click your desktop)
+\}
+`;
+
     return (
       <div>
         <style>{`
@@ -64,9 +77,9 @@ module.exports = class Body extends ReactCSS.Component {
               <div />
               <div>
                 <div is="title">React Context</div>
-                <div is="snippet">
-
-                </div>
+                <Raised is="Snippet">
+                  <Code file={ snippet } />
+                </Raised>
               </div>
             </Grid>
           </Container>
@@ -76,8 +89,8 @@ module.exports = class Body extends ReactCSS.Component {
           <Container>
             <Grid>
               <div />
-              <div is="docs">
-                <Raised>
+              <div is="docsWrap">
+                <Raised is="Docs">
                   <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} />
                 </Raised>
               </div>
