@@ -57,8 +57,9 @@ class Home extends ReactCSS.Component {
         feature: {
           boxShadow: 'inset 0 -1px 0 0 rgba(255,255,255,.2), inset 0 1px 0 0 rgba(255,255,255,.2)'
         },
-        body: {},
-
+        body: {
+          marginBottom: '30px'
+        },
         npm: {
           position: 'relative'
         },
@@ -66,6 +67,10 @@ class Home extends ReactCSS.Component {
           position: 'absolute',
           top: '11px',
           right: '-22px'
+        },
+
+        files: {
+          paddingBottom: '15px'
         },
 
         title: {
@@ -175,19 +180,17 @@ class Home extends ReactCSS.Component {
         var args = markdown.getArgs(file);
         var body = markdown.getBody(file);
 
-        if (body.trim()) {
-          markdownFiles.push(
-            <div key={ fileName } id={ args.id } is="file" className="markdown">
+        markdownFiles.push(
+          <div key={ fileName } id={ args.id } is="file" className="markdown">
 
-              <MarkdownTitle
-                isHeadline={ markdown.isSubSection(fileName) ? true : false }
-                title={ args.title }
-                link={ args.id } />
+            <MarkdownTitle
+              isHeadline={ markdown.isSubSection(fileName) ? true : false }
+              title={ args.title }
+              link={ args.id } />
 
-              <Markdown>{ body }</Markdown>
-            </div>
-            );
-        }
+            <Markdown>{ body }</Markdown>
+          </div>
+          );
       }
     }
 
@@ -247,7 +250,7 @@ class Home extends ReactCSS.Component {
                     <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} borders />
                   </div>
 
-                  <div ref="files">
+                  <div ref="files" is="files">
                     { markdownFiles }
                   </div>
 

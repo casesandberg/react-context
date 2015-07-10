@@ -80,8 +80,8 @@ module.exports = class Markdown extends ReactCSS.Component {
             line-height: 32px;
             font-weight: 200;
             color: rgba(0,0,0,.57);
-            padding-top: 24px;
-            margin-top: 20px;
+            padding-top: 20px;
+            margin-top: 0;
             margin-bottom: 10px;
             padding-left: 24px;
           }
