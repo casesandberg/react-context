@@ -22,7 +22,7 @@ module.exports = class MarkdownTitle extends ReactCSS.Component {
         link: {
           opacity: '0',
           textDecoration: 'none',
-          fill: '#4A90E2',
+          fill: '#2A5881',
           transition: 'opacity 200ms linear'
         }
       },
