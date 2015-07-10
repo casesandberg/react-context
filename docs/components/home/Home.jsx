@@ -30,6 +30,15 @@ class Home extends ReactCSS.Component {
         },
         body: {},
 
+        npm: {
+          position: 'relative'
+        },
+        star: {
+          position: 'absolute',
+          top: '11px',
+          right: '-22px'
+        },
+
         title: {
           paddingTop: '100px',
           paddingBottom: '35px',
@@ -133,7 +142,12 @@ class Home extends ReactCSS.Component {
               <div />
               <div is="docsWrap">
                 <Raised is="Docs">
-                  <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} borders />
+                  <div is="npm">
+                    <div is="star">
+                      <iframe src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=reactcss&type=star&count=true&size=large" scrolling="0" width="160px" height="30px" frameBorder="0"></iframe>
+                    </div>
+                    <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} borders />
+                  </div>
 
                   { markdownFiles }
 
