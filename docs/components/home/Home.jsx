@@ -160,6 +160,7 @@ class Home extends ReactCSS.Component {
   height: ${ this.context.height }, // The screen height (try resizing)
   language: '${ this.context.language }', // The language thats set
   focus: ${ this.context.focus.toString() } // Window is focused (click your desktop)
+  scroll: ${ this.context.scroll } // The window scroll position
 \}
 `;
 

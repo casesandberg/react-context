@@ -13,7 +13,8 @@ var context = function(Component) {
       return {
         width: window.innerWidth,
         height: window.innerHeight,
-        focus: document.hasFocus()
+        focus: document.hasFocus(),
+        scroll: window.scrollY
       };
     },
 
@@ -23,7 +24,8 @@ var context = function(Component) {
       width: React.PropTypes.number,
       height: React.PropTypes.number,
       language: React.PropTypes.string,
-      focus: React.PropTypes.bool
+      focus: React.PropTypes.bool,
+      scroll: React.PropTypes.number
     },
 
     getChildContext: function() {
@@ -33,7 +35,8 @@ var context = function(Component) {
         width: this.state.width,
         height: this.state.height,
         language: window.navigator.userLanguage || window.navigator.language,
-        focus: this.state.focus
+        focus: this.state.focus,
+        scroll: this.state.scroll
       };
     },
 
@@ -41,12 +44,20 @@ var context = function(Component) {
       window.addEventListener('resize', this.handleResize, false);
       window.addEventListener('focus', this.handleFocus, false);
       window.addEventListener('blur', this.handleFocus, false);
+      window.addEventListener('scroll', this.handleScroll, false);
     },
 
     componentWillUnmount: function() {
       window.removeEventListener('resize', this.handleResize, false);
       window.removeEventListener('focus', this.handleFocus, false);
       window.removeEventListener('blur', this.handleFocus, false);
+      window.removeEventListener('scroll', this.handleScroll, false);
+    },
+
+    handleScroll: function() {
+      this.setState({
+        scroll: window.scrollY
+      });
     },
 
     handleResize: function() {
@@ -78,7 +89,8 @@ context.types = function(){
     width: React.PropTypes.number,
     height: React.PropTypes.number,
     language: React.PropTypes.string,
-    focus: React.PropTypes.bool
+    focus: React.PropTypes.bool,
+    scroll: React.PropTypes.number
   };
 };
 
