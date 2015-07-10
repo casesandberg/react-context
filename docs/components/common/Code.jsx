@@ -62,6 +62,12 @@ module.exports = class Code extends ReactCSS.Component {
           fontSize: '13px',
           lineHeight: '15px'
         }
+      },
+      'borders': {
+        code: {
+          borderTop: '1px solid #eee',
+          borderBottom: '1px solid #eee'
+        }
       }
     };
   }
@@ -89,7 +95,7 @@ module.exports = class Code extends ReactCSS.Component {
     }
 
     return (
-      <div>
+      <div is="code">
 
         <style>{`
           .rendered{

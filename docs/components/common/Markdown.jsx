@@ -14,7 +14,11 @@ module.exports = class Markdown extends ReactCSS.Component {
   classes() {
     return {
       'default': {
-        markdown: {}
+        markdown: {
+          fontSize: '17px',
+          lineHeight: '24px',
+          color: 'rgba(0,0,0,.47)'
+        }
       }
     };
   }
@@ -26,32 +30,29 @@ module.exports = class Markdown extends ReactCSS.Component {
   render() {
     var children = this.props.children;
 
-    // codeblocks on top of eachother
-    children = children.replace('```\n```', '======');
-
-    newLines = children;
+    var newLines = children;
 
     var codes = [];
     for (var i = 0; i < markdown.isCode(children).length; i++) {
       var codeBlock = markdown.isCode(children)[i];
-      newLines = newLines.replace(codeBlock[1], "|Code:#{ i }|");
-      codes[i] = <Code file={ codeBlock[2] } condensed={ this.props.condensed }/>
+      newLines = newLines.replace(codeBlock[1], '|Code:' + i + '|');
+      codes[i] = <Code file={ codeBlock[2] } condensed={ this.props.condensed } borders />
     }
 
-    var markdown = [];
+    var markdownFile = [];
     for (var i = 0; i < newLines.split('\n').length; i++) {
       var line = newLines.split('\n')[i];
       if (markdown.isCodeBlock(line)) {
-        markdown.push(<div key={ i }>{ codes[ markdown.codeNumber(line) ] }</div>);
+        markdownFile.push(<div key={ i }>{ codes[ markdown.codeNumber(line) ] }</div>);
       } else {
-        markdown.push(<div key={ i } is="markdown" className="markdown" dangerouslySetInnerHTML={ __html: markdown.render(line) } />);
+        markdownFile.push(<div key={ i } is="markdown" className="markdown" dangerouslySetInnerHTML={ {__html: markdown.render(line)} } />);
       }
     }
 
     return (
-      <div>
+      <div is="markdown">
         <style>{`
-          .markdown code{
+          .short code{
             background: #ddd;
             padding: 1px 5px 3px;
             border-radius: 2px;
@@ -60,37 +61,40 @@ module.exports = class Markdown extends ReactCSS.Component {
             vertical-align: bottom;
           }
 
-          .docsBody p{
-            margin: 15px 0;
+          .markdown p{
+            margin: 15px 24px;
           }
 
-          .docsBody h1{
+          .markdown h1{
             font-size: 38px;
             font-weight: 200;
             color: rgba(0,0,0,.77);
             margin: 0;
-            padding-top: 80px;
-            padding-bottom: 10px;
+            padding-top: 24px;
+            padding-bottom: 5px;
+            padding-left: 24px;
           }
 
-          .docsBody h2{
+          .markdown h2{
             font-size: 26px;
             line-height: 32px;
             font-weight: 200;
             color: rgba(0,0,0,.57);
-            padding-top: 20px;
+            padding-top: 24px;
             margin-top: 20px;
             margin-bottom: 10px;
+            padding-left: 24px;
           }
 
-          .docsBody h3{
+          .markdown h3{
             font-weight: normal;
             font-size: 20px;
             color: rgba(0,0,0,.67);
+            padding-left: 24px;
           }
         `}</style>
 
-        { markdown }
+        { markdownFile }
 
       </div>
     )

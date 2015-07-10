@@ -4,11 +4,18 @@
 var React = require('react');
 var ReactCSS = require('reactcss');
 var context = require('react-context');
+var markdown = require('../../helpers/markdown');
 
 var Container = require('../layout/Container');
 var Grid = require('../layout/Grid');
 var Code = require('../common/Code');
 var { Raised } = require('react-material-design');
+var Markdown = require('../common/Markdown');
+var MarkdownTitle = require('../common/MarkdownTitle');
+
+var documentation = require('../../documentation');
+
+
 
 class Home extends ReactCSS.Component {
 
@@ -67,6 +74,30 @@ class Home extends ReactCSS.Component {
       transition = 'background 1000ms linear';
     }
 
+    var markdownFiles = [];
+
+    for (var fileName in documentation) {
+      if (documentation.hasOwnProperty(fileName)) {
+        var file = documentation[fileName];
+        var args = markdown.getArgs(file);
+        var body = markdown.getBody(file);
+
+        if (body.trim()) {
+          markdownFiles.push(
+            <div key={ fileName } is="file" className="markdown">
+
+              <MarkdownTitle
+                isHeadline={ markdown.isSubSection(fileName) ? true : false }
+                title={ args.title }
+                link={ args.id } />
+
+              <Markdown>{ body }</Markdown>
+            </div>
+            );
+        }
+      }
+    }
+
     return (
       <div>
         <style>{`
@@ -102,7 +133,10 @@ class Home extends ReactCSS.Component {
               <div />
               <div is="docsWrap">
                 <Raised is="Docs">
-                  <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} />
+                  <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} borders />
+
+                  { markdownFiles }
+
                 </Raised>
               </div>
             </Grid>
