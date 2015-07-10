@@ -12,12 +12,25 @@ var Code = require('../common/Code');
 var { Raised } = require('react-material-design');
 var Markdown = require('../common/Markdown');
 var MarkdownTitle = require('../common/MarkdownTitle');
+var HomeSidebar = require('./HomeSidebar');
 
 var documentation = require('../../documentation');
 
 
 
 class Home extends ReactCSS.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      sidebarFixed: false,
+      visible: false,
+      files: {}
+    };
+    this.changeSelection = this.changeSelection.bind(this);
+    this.attachSidebar = this.attachSidebar.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
 
   classes() {
     return {
@@ -61,6 +74,61 @@ class Home extends ReactCSS.Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, false);
+
+    var domFiles = React.findDOMNode(this.refs.files).children;
+
+    var files = {};
+    for (var i = 0; i < domFiles.length; i++) {
+      var file = domFiles[i];
+      files[file.offsetTop] = file.id;
+    }
+    
+    this.setState({ files: files });
+  }
+
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll, false);
+  }
+
+  handleScroll(e) {
+    this.changeSelection();
+    this.attachSidebar();
+  }
+
+  attachSidebar() {
+    var sidebarTop = React.findDOMNode( this.refs.homeSidebar ).getBoundingClientRect().top;
+
+    if (sidebarTop <= 0 && this.state.sidebarFixed === false) {
+      this.setState({ sidebarFixed: true });
+    }
+
+    if (sidebarTop > 0 && this.state.sidebarFixed === true) {
+      this.setState({ sidebarFixed: false });
+    }
+  }
+
+  changeSelection() {
+    var top = document.body.scrollTop - 150;
+    var mostVisible = '';
+
+    for (var offset in this.state.files) {
+      if (this.state.files.hasOwnProperty(offset)) {
+        var id = this.state.files[offset];
+        if (offset < top) {
+          mostVisible = id;
+        }
+      }
+    }
+
+    if (mostVisible !== this.state.visible) {
+      this.setState({ visible: mostVisible });
+    }
+  }
+
+
   render(){
 
     var snippet =
@@ -93,7 +161,7 @@ class Home extends ReactCSS.Component {
 
         if (body.trim()) {
           markdownFiles.push(
-            <div key={ fileName } is="file" className="markdown">
+            <div key={ fileName } id={ args.id } is="file" className="markdown">
 
               <MarkdownTitle
                 isHeadline={ markdown.isSubSection(fileName) ? true : false }
@@ -139,7 +207,9 @@ class Home extends ReactCSS.Component {
         <div is="body">
           <Container>
             <Grid>
-              <div />
+              <div ref="homeSidebar">
+                <HomeSidebar files={ documentation } active={ this.state.visible } fixed={ this.state.sidebarFixed }  />
+              </div>
               <div is="docsWrap">
                 <Raised is="Docs">
                   <div is="npm">
@@ -149,7 +219,9 @@ class Home extends ReactCSS.Component {
                     <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} borders />
                   </div>
 
-                  { markdownFiles }
+                  <div ref="files">
+                    { markdownFiles }
+                  </div>
 
                 </Raised>
               </div>

@@ -13,7 +13,7 @@ module.exports = class MarkdownTitle extends ReactCSS.Component {
     this.state = {
       hover: false
     };
-    this.handleHover = this.handleHover.bind(this)
+    this.handleHover = this.handleHover.bind(this);
   }
 
   classes() {
