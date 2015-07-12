@@ -1,0 +1,3 @@
+[submodule "modules/react-component-query"]
+	path = modules/react-component-query
+	url = https://github.com/casesandberg/react-component-query
