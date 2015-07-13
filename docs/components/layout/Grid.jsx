@@ -7,6 +7,12 @@ var query = require('react-component-query');
 
 class Grid extends ReactCSS.Component {
 
+  constructor() {
+    super();
+
+    this.calculateBounds = this.calculateBounds.bind(this);
+  }
+
   classes() {
     return {
       'default': {
@@ -33,13 +39,31 @@ class Grid extends ReactCSS.Component {
   }
 
   styles() {
-    return this.css({
-      'no-sidebar': this.props.width < 500
-    });
+    return this.css(this.calculateBounds());
+  }
+
+  calculateBounds() {
+    var activeStyles = {};
+
+    var bounds = this.props.activeBounds;
+    if (bounds) {
+      for (var bound of bounds) {
+        activeStyles[bound] = true;
+      }
+    }
+
+    return activeStyles;
+  }
+
+  static bounds() {
+    return {
+      'no-sidebar': [0, 500]
+    };
   }
 
   render(){
     console.log(this.props.width);
+    console.log(this.props.activeBounds);
     return (
       <div is="grid">
         <div is="left">{ this.props.children[0] }</div>
