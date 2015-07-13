@@ -35,7 +35,8 @@ config = {
     },
     resolve: {
       alias: {
-        'react-context': path.resolve(__dirname, './src/context.js')
+        'react-context': path.resolve(__dirname, './src/context.js'),
+        'react': path.resolve(__dirname, './node_modules/react')
       },
       extensions: ['', '.js', '.jsx'],
       fallback: [ path.resolve(__dirname, './modules') ]

@@ -3,8 +3,9 @@
 
 var React = require('react');
 var ReactCSS = require('reactcss');
+var query = require('react-component-query');
 
-module.exports = class Grid extends ReactCSS.Component {
+class Grid extends ReactCSS.Component {
 
   classes() {
     return {
@@ -13,16 +14,32 @@ module.exports = class Grid extends ReactCSS.Component {
           position: 'relative'
         },
         left: {
-          position: 'absolute'
+          position: 'absolute',
+          width: '130px'
         },
         main: {
           paddingLeft: '150px'
+        }
+      },
+      'no-sidebar': {
+        left: {
+          display: 'none'
+        },
+        main: {
+          paddingLeft: '0'
         }
       }
     };
   }
 
+  styles() {
+    return this.css({
+      'no-sidebar': this.props.width < 500
+    });
+  }
+
   render(){
+    console.log(this.props.width);
     return (
       <div is="grid">
         <div is="left">{ this.props.children[0] }</div>
@@ -31,3 +48,5 @@ module.exports = class Grid extends ReactCSS.Component {
     )
   }
 };
+
+module.exports = query(Grid);

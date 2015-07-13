@@ -98,15 +98,17 @@ class Home extends ReactCSS.Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, false);
 
-    var domFiles = React.findDOMNode(this.refs.files).children;
+    var domFiles = React.findDOMNode(this.refs.files) && React.findDOMNode(this.refs.files).children;
 
-    var files = {};
-    for (var i = 0; i < domFiles.length; i++) {
-      var file = domFiles[i];
-      files[file.offsetTop] = file.id;
+    if (domFiles) {
+      var files = {};
+      for (var i = 0; i < domFiles.length; i++) {
+        var file = domFiles[i];
+        files[file.offsetTop] = file.id;
+      }
+
+      this.setState({ files: files });
     }
-
-    this.setState({ files: files });
   }
 
 
