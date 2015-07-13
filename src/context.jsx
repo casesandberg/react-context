@@ -38,7 +38,10 @@ var context = function(Component) {
       language: React.PropTypes.string,
       focus: React.PropTypes.bool,
       scroll: React.PropTypes.number,
-      adBlock: React.PropTypes.bool
+      adBlock: React.PropTypes.bool,
+      os: React.PropTypes.string,
+      browser: React.PropTypes.string,
+      browserVersion: React.PropTypes.string
     },
 
     getChildContext: function() {
@@ -50,8 +53,94 @@ var context = function(Component) {
         language: window.navigator.userLanguage || window.navigator.language,
         focus: this.state.focus,
         scroll: this.state.scroll,
-        adBlock: this.state.adBlock
+        adBlock: this.state.adBlock,
+        os: this.checkOS(),
+        browser: this.checkBrowser().browser,
+        browserVersion: this.checkBrowser().version
       };
+    },
+
+    // (C) viazenetti GmbH (Christian Ludwig)
+    // http://jsfiddle.net/ChristianL/AVyND/
+    checkOS: function() {
+      console.log(navigator.userAgent);
+      var os = undefined;
+      var clientStrings = [
+          { s:'Windows', r:/(Windows)/},
+          { s:'Android', r:/Android/},
+          { s:'Open BSD', r:/OpenBSD/},
+          { s:'Linux', r:/(Linux|X11)/},
+          { s:'iOS', r:/(iPhone|iPad|iPod)/},
+          { s:'Mac', r:/Mac/},
+          { s:'UNIX', r:/UNIX/},
+          { s:'Robot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
+      ];
+      for (var i = 0; i < clientStrings.length; i++) {
+        var cs = clientStrings[i];
+        if (cs.r.test(navigator.userAgent)) {
+          return cs.s;
+        }
+      }
+
+    },
+
+    // (C) viazenetti GmbH (Christian Ludwig)
+    // http://jsfiddle.net/ChristianL/AVyND/
+    checkBrowser: function() {
+      var UA = navigator.userAgent;
+      var browser = undefined;
+      var version = undefined;
+      var verOffset;
+
+      // Opera
+      if ((verOffset = UA.indexOf('Opera')) > -1) {
+          browser = 'Opera';
+          version = UA.substring(verOffset + 6);
+          if ((verOffset = UA.indexOf('Version')) > -1) {
+              version = UA.substring(verOffset + 8);
+          }
+      }
+      // MSIE
+      else if ((verOffset = UA.indexOf('MSIE')) > -1) {
+          browser = 'Microsoft Internet Explorer';
+          version = UA.substring(verOffset + 5);
+      }
+      // Chrome
+      else if ((verOffset = UA.indexOf('Chrome')) > -1) {
+          browser = 'Chrome';
+          version = UA.substring(verOffset + 7);
+      }
+      // Safari
+      else if ((verOffset = UA.indexOf('Safari')) > -1) {
+          browser = 'Safari';
+          version = UA.substring(verOffset + 7);
+          if ((verOffset = UA.indexOf('Version')) > -1) {
+              version = UA.substring(verOffset + 8);
+          }
+      }
+      // Firefox
+      else if ((verOffset = UA.indexOf('Firefox')) > -1) {
+          browser = 'Firefox';
+          version = UA.substring(verOffset + 8);
+      }
+      // MSIE 11+
+      else if (UA.indexOf('Trident/') > -1) {
+          browser = 'Microsoft Internet Explorer';
+          version = UA.substring(UA.indexOf('rv:') + 3);
+      }
+      // Other browsers
+      else if ((nameOffset = UA.lastIndexOf(' ') + 1) < (verOffset = UA.lastIndexOf('/'))) {
+          browser = UA.substring(nameOffset, verOffset);
+          version = UA.substring(verOffset + 1);
+          if (browser.toLowerCase() == browser.toUpperCase()) {
+              browser = navigator.appName;
+          }
+      }
+
+      return {
+        browser: browser,
+        version: version
+      }
     },
 
     componentDidMount: function() {
@@ -112,8 +201,6 @@ var context = function(Component) {
     		      this.setState({ adBlock: true });
     		}
       }
-
-      console.log(ad);
     },
 
     render: function(){
@@ -139,7 +226,10 @@ context.types = function(){
     language: React.PropTypes.string,
     focus: React.PropTypes.bool,
     scroll: React.PropTypes.number,
-    adBlock: React.PropTypes.bool
+    adBlock: React.PropTypes.bool,
+    os: React.PropTypes.string,
+    browser: React.PropTypes.string,
+    browserVersion: React.PropTypes.string
   };
 };
 

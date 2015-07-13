@@ -63,8 +63,8 @@ class Grid extends ReactCSS.Component {
   }
 
   render(){
-    console.log(this.props.width);
-    console.log(this.props.activeBounds);
+    // console.log(this.props.width);
+    // console.log(this.props.activeBounds);
     return (
       <div is="grid">
         <div is="left">{ this.props.children[0] }</div>
