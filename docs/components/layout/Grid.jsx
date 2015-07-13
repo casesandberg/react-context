@@ -3,7 +3,7 @@
 
 var React = require('react');
 var ReactCSS = require('reactcss');
-var query = require('react-component-query');
+var bounds = require('react-bounds');
 
 class Grid extends ReactCSS.Component {
 
@@ -73,4 +73,4 @@ class Grid extends ReactCSS.Component {
   }
 };
 
-module.exports = query(Grid);
+module.exports = bounds(Grid);
