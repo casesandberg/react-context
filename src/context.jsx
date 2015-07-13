@@ -12,7 +12,20 @@ var fakeAdStyles = {
   position: 'absolute !important',
   left: '-10000px !important',
   top: '-1000px !important',
+}
 
+var contextTypes = {
+  pointer: React.PropTypes.string,
+  density: React.PropTypes.number,
+  width: React.PropTypes.number,
+  height: React.PropTypes.number,
+  language: React.PropTypes.string,
+  focus: React.PropTypes.bool,
+  scroll: React.PropTypes.number,
+  adBlock: React.PropTypes.bool,
+  os: React.PropTypes.string,
+  browser: React.PropTypes.string,
+  browserVersion: React.PropTypes.string
 }
 
 
@@ -30,19 +43,7 @@ var context = function(Component) {
       };
     },
 
-    childContextTypes: {
-      pointer: React.PropTypes.string,
-      density: React.PropTypes.number,
-      width: React.PropTypes.number,
-      height: React.PropTypes.number,
-      language: React.PropTypes.string,
-      focus: React.PropTypes.bool,
-      scroll: React.PropTypes.number,
-      adBlock: React.PropTypes.bool,
-      os: React.PropTypes.string,
-      browser: React.PropTypes.string,
-      browserVersion: React.PropTypes.string
-    },
+    childContextTypes: contextTypes,
 
     getChildContext: function() {
       return {
@@ -63,7 +64,6 @@ var context = function(Component) {
     // (C) viazenetti GmbH (Christian Ludwig)
     // http://jsfiddle.net/ChristianL/AVyND/
     checkOS: function() {
-      console.log(navigator.userAgent);
       var os = undefined;
       var clientStrings = [
           { s:'Windows', r:/(Windows)/},
@@ -217,20 +217,20 @@ var context = function(Component) {
   return Context;
 };
 
-context.types = function(){
-  return {
-    pointer: React.PropTypes.string,
-    density: React.PropTypes.number,
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    language: React.PropTypes.string,
-    focus: React.PropTypes.bool,
-    scroll: React.PropTypes.number,
-    adBlock: React.PropTypes.bool,
-    os: React.PropTypes.string,
-    browser: React.PropTypes.string,
-    browserVersion: React.PropTypes.string
-  };
+context.subscribe = function(lookup){
+  if (!lookup) {
+    return contextTypes;
+  } else {
+    var customTypes = {};
+    for (var type of lookup) {
+      if (contextTypes[type]) {
+        customTypes[type] = contextTypes[type];
+      } else {
+        console.warn('Context type `' + type + '` does not exist');
+      }
+    }
+    return customTypes;
+  }
 };
 
 module.exports = context;

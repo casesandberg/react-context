@@ -157,8 +157,8 @@ class Home extends ReactCSS.Component {
     var snippet =
 `this.context \= \{
   pointer: '${ this.context.pointer }', // the device's primary input
-  adBlock: ${ this.context.adBlock.toString() } // There is an adblocker enabled
-  focus: ${ this.context.focus.toString() } // Window is focused (click your desktop)
+  adBlock: ${ this.context.adBlock && this.context.adBlock.toString() } // There is an adblocker enabled
+  focus: ${ this.context.focus && this.context.focus.toString() } // Window is focused (click your desktop)
   density: ${ this.context.density }, // The screen pixel density
   width: ${ this.context.width }, // The screen width (try resizing)
   height: ${ this.context.height }, // The screen height (try resizing)
@@ -272,6 +272,6 @@ class Home extends ReactCSS.Component {
   }
 };
 
-Home.contextTypes = context.types();
+Home.contextTypes = context.subscribe();
 
 module.exports = Home
