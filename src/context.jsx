@@ -5,6 +5,17 @@ var React = require('react');
 
 
 
+var fakeAdClasses = 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links';
+var fakeAdStyles = {
+  width: '1px !important',
+  height: '1px !important',
+  position: 'absolute !important',
+  left: '-10000px !important',
+  top: '-1000px !important',
+
+}
+
+
 var context = function(Component) {
 
   var Context = React.createClass({
@@ -14,7 +25,8 @@ var context = function(Component) {
         width: window.innerWidth,
         height: window.innerHeight,
         focus: document.hasFocus(),
-        scroll: window.scrollY
+        scroll: window.scrollY,
+        adBlock: false
       };
     },
 
@@ -25,7 +37,8 @@ var context = function(Component) {
       height: React.PropTypes.number,
       language: React.PropTypes.string,
       focus: React.PropTypes.bool,
-      scroll: React.PropTypes.number
+      scroll: React.PropTypes.number,
+      adBlock: React.PropTypes.bool
     },
 
     getChildContext: function() {
@@ -36,7 +49,8 @@ var context = function(Component) {
         height: this.state.height,
         language: window.navigator.userLanguage || window.navigator.language,
         focus: this.state.focus,
-        scroll: this.state.scroll
+        scroll: this.state.scroll,
+        adBlock: this.state.adBlock
       };
     },
 
@@ -45,6 +59,8 @@ var context = function(Component) {
       window.addEventListener('focus', this.handleFocus, false);
       window.addEventListener('blur', this.handleFocus, false);
       window.addEventListener('scroll', this.handleScroll, false);
+
+      this.checkForAdBlock();
     },
 
     componentWillUnmount: function() {
@@ -73,9 +89,41 @@ var context = function(Component) {
       });
     },
 
+    checkForAdBlock: function(){
+      var ad = React.findDOMNode( this.refs.fakeAd );
+
+      // https://github.com/sitexw/FuckAdBlock/blob/master/fuckadblock.js
+      if (window.document.body.getAttribute('abp') !== null ||
+          ad.offsetParent === null ||
+          ad.offsetHeight == 0 ||
+          ad.offsetLeft == 0 ||
+          ad.offsetTop == 0 ||
+          ad.offsetWidth == 0 ||
+          ad.clientHeight == 0 ||
+          ad.clientWidth == 0 ) {
+            this.setState({ adBlock: true });
+          }
+
+      if (window.getComputedStyle !== undefined) {
+    	  var adStyles = window.getComputedStyle(ad, null);
+
+        if (adStyles.getPropertyValue('display') == 'none' ||
+            adStyles.getPropertyValue('visibility') == 'hidden') {
+    		      this.setState({ adBlock: true });
+    		}
+      }
+
+      console.log(ad);
+    },
+
     render: function(){
       // console.log(window);
-      return React.createElement(Component, this.props);
+      return (
+        <div>
+          <div className={ fakeAdClasses } style={ fakeAdStyles } ref="fakeAd" />
+          <Component {...this.props} />
+        </div>
+      )
     }
   });
 
@@ -90,7 +138,8 @@ context.types = function(){
     height: React.PropTypes.number,
     language: React.PropTypes.string,
     focus: React.PropTypes.bool,
-    scroll: React.PropTypes.number
+    scroll: React.PropTypes.number,
+    adBlock: React.PropTypes.bool
   };
 };
 

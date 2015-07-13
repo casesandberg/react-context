@@ -58,6 +58,7 @@ class Grid extends ReactCSS.Component {
   static bounds() {
     return {
       'no-sidebar': [0, 500]
+      // 'no-sidebar': { min: 0, max: 500, type: 'width' }
     };
   }
 
