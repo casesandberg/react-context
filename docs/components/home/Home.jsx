@@ -14,7 +14,7 @@ module.exports = class Home extends React.Component {
 
   render(){
     return (
-      <div>
+      <div style={{ fontFamily: 'Roboto' }}>
         <HomeHeader />
         <HomeFeature />
         <HomeBody />
