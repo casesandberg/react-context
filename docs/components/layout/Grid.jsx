@@ -3,14 +3,14 @@
 
 var React = require('react');
 var ReactCSS = require('reactcss');
-var bounds = require('react-bounds');
+var context = require('react-context');
 
 class Grid extends ReactCSS.Component {
 
+
+
   constructor() {
     super();
-
-    this.calculateBounds = this.calculateBounds.bind(this);
   }
 
   classes() {
@@ -39,32 +39,12 @@ class Grid extends ReactCSS.Component {
   }
 
   styles() {
-    return this.css(this.calculateBounds());
-  }
-
-  calculateBounds() {
-    var activeStyles = {};
-
-    var bounds = this.props.activeBounds;
-    if (bounds) {
-      for (var bound of bounds) {
-        activeStyles[bound] = true;
-      }
-    }
-
-    return activeStyles;
-  }
-
-  static bounds() {
-    return {
-      'no-sidebar': [0, 500]
-      // 'no-sidebar': { min: 0, max: 500, type: 'width' }
-    };
+    return this.css({
+      'no-sidebar': this.context.width < 500
+    });
   }
 
   render(){
-    // console.log(this.props.width);
-    // console.log(this.props.activeBounds);
     return (
       <div is="grid">
         <div is="left">{ this.props.children[0] }</div>
@@ -74,4 +54,6 @@ class Grid extends ReactCSS.Component {
   }
 };
 
-module.exports = bounds(Grid);
+Grid.contextTypes = context.subscribe(['width']);
+
+module.exports = Grid;
