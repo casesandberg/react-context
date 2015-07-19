@@ -45,15 +45,15 @@ module.exports = class Markdown extends ReactCSS.Component {
       if (markdown.isCodeBlock(line)) {
         markdownFile.push(<div key={ i }>{ codes[ markdown.codeNumber(line) ] }</div>);
       } else {
-        markdownFile.push(<div key={ i } is="markdown" className="markdown" dangerouslySetInnerHTML={ {__html: markdown.render(line)} } />);
+        markdownFile.push(<div key={ i } is="markdown" className="markdown text" dangerouslySetInnerHTML={ {__html: markdown.render(line)} } />);
       }
     }
 
     return (
       <div is="markdown">
         <style>{`
-          .short code{
-            background: #ddd;
+          .text code{
+            background: #eee;
             padding: 1px 5px 3px;
             border-radius: 2px;
             box-shadow: inset 0 0 0 1px rgba(0,0,0,.03);
