@@ -41,10 +41,10 @@ class HomeFeature extends ReactCSS.Component {
   adBlock: ${ this.context.adBlock && this.context.adBlock.toString() } // There is an adblocker enabled
   focus: ${ this.context.focus && this.context.focus.toString() } // Window is focused (click your desktop)
   density: ${ this.context.density }, // The screen pixel density
+  scroll: ${ this.context.scroll } // The window scroll position
   width: ${ this.context.width }, // The screen width (try resizing)
   height: ${ this.context.height }, // The screen height (try resizing)
   language: '${ this.context.language }', // The language thats set
-  scroll: ${ this.context.scroll } // The window scroll position
   os: '${ this.context.os }' // The devices operating system
   browser: '${ this.context.browser }' // The devices browser
   browserVersion: '${ this.context.browserVersion }'
@@ -67,12 +67,18 @@ class HomeFeature extends ReactCSS.Component {
             background: ${ bg };
             transition: ${ transition };
           }
+          .snippet .hljs-literal {
+            color: #666;
+          }
+          .snippet .hljs-number {
+            color: #9F6EC9;
+          }
         `}</style>
 
         <Container>
           <Grid>
             <div />
-            <div>
+            <div className="snippet">
               <div is="title">React Context</div>
               <Raised is="Snippet">
                 <Code file={ snippet } />
