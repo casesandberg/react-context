@@ -100,7 +100,7 @@ module.exports = class HomeBody extends ReactCSS.Component {
   }
 
   changeSelection() {
-    var top = document.body.scrollTop - 150;
+    var top = document.body.scrollTop - 300;
     var mostVisible = '';
 
     for (var offset in this.state.files) {
