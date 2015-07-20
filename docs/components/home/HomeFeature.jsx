@@ -17,7 +17,15 @@ class HomeFeature extends ReactCSS.Component {
     return {
       'default': {
         feature: {
-          boxShadow: 'inset 0 -1px 0 0 rgba(255,255,255,.2), inset 0 1px 0 0 rgba(255,255,255,.2)'
+          boxShadow: 'inset 0 -1px 0 0 rgba(255,255,255,.2), inset 0 1px 0 0 rgba(255,255,255,.2)',
+          position: 'relative'
+        },
+        bg: {
+          Absolute: '1px 0 1px 0',
+          backgroundImage: 'url("docs/images/react-context-bg.jpg")',
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+          transition: 'all 200ms linear'
         },
         title: {
           paddingTop: '100px',
@@ -29,8 +37,19 @@ class HomeFeature extends ReactCSS.Component {
           radius: '2px 2px 0 0',
           background: '#EEEEEE'
         },
+      },
+      'fade-out': {
+        bg: {
+          opacity: '0'
+        }
       }
     };
+  }
+
+  styles() {
+    return this.css({
+      'fade-out': this.context.focus === false
+    });
   }
 
   render() {
@@ -74,6 +93,8 @@ class HomeFeature extends ReactCSS.Component {
             color: #9F6EC9;
           }
         `}</style>
+
+        <div is="bg" />
 
         <Container>
           <Grid>
