@@ -14,11 +14,11 @@ var Code = require('../common/Code');
 var MarkdownTitle = require('../common/MarkdownTitle');
 var HomeSidebar = require('./HomeSidebar');
 
-
 var documentation = require('../../documentation');
 
 
-module.exports = class HomeBody extends ReactCSS.Component {
+
+class HomeBody extends ReactCSS.Component {
 
   constructor() {
     super();
@@ -57,8 +57,19 @@ module.exports = class HomeBody extends ReactCSS.Component {
         Docs: {
           radius: '0 0 2px 2px'
         }
+      },
+      'mobile': {
+        star: {
+          top: '76px'
+        }
       }
     };
+  }
+
+  styles() {
+    return this.css({
+      'mobile': this.context.width < 500
+    });
   }
 
   componentDidMount() {
@@ -169,3 +180,7 @@ module.exports = class HomeBody extends ReactCSS.Component {
     )
   }
 }
+
+HomeBody.contextTypes = context.subscribe(['width']);
+
+module.exports = HomeBody

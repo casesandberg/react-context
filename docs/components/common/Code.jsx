@@ -4,12 +4,17 @@
 var React = require('react');
 var ReactCSS = require('reactcss');
 var markdown = require('../../helpers/markdown');
+var context = require('react-context');
 
 var { Tile } = require('react-material-design');
 
 
 
-module.exports = class Code extends ReactCSS.Component {
+class Code extends ReactCSS.Component {
+
+  constructor() {
+    super();
+  }
 
   classes() {
     return {
@@ -75,7 +80,7 @@ module.exports = class Code extends ReactCSS.Component {
 
   styles() {
     return this.css({
-      'condensed': this.context.mobile
+      'condensed': this.context.width < 500
     });
   }
 
@@ -137,3 +142,7 @@ module.exports = class Code extends ReactCSS.Component {
     );
   }
 }
+
+Code.contextTypes = context.subscribe(['width']);
+
+module.exports = Code
