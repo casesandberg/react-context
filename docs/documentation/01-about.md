@@ -4,7 +4,7 @@ title: About
 ---
 React context passes down helpful properties for use in your app:
 
-**Engagement Properties** - Pointer, AdBlock and Focus
+**Engagement Properties** - AdBlock and Focus
 
 **Display Properties** - Density, Scroll, Width and Height
 

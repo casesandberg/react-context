@@ -7,4 +7,4 @@ this.context.adBlock // bool
 
 Component.contextTypes = context.subscribe(['adBlock'])
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at quam vel risus facilisis bibendum. Nulla condimentum odio vel justo rutrum blandit. Nulla facilisi. Fusce venenatis posuere nulla, non tincidunt metus sodales quis. Maecenas aliquet tincidunt lacus id ullamcorper.
+Utilizes `sitexw/FuckAdBlock` to detect when there is an ad blocker turned on. Valid on Chrome, Firefox, IE (8+), Safari, Opera.

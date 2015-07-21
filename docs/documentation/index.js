@@ -12,7 +12,7 @@ module.exports = {
   '03.06-height': require('./height.md'),
   '03.07-language': require('./language.md'),
   '03.08-os': require('./os.md'),
-  '03.09-pointer': require('./pointer.md'),
+  // '03.09-pointer': require('./pointer.md'),
   '03.10-scroll': require('./scroll.md'),
   '03.11-width': require('./width.md')
 };

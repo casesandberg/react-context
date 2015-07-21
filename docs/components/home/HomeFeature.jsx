@@ -56,7 +56,6 @@ class HomeFeature extends ReactCSS.Component {
 
     var snippet =
 `this.context \= \{
-  pointer: '${ this.context.pointer }', // the device's primary input
   adBlock: ${ this.context.adBlock && this.context.adBlock.toString() } // There is an adblocker enabled
   focus: ${ this.context.focus && this.context.focus.toString() } // Window is focused (click your desktop)
   density: ${ this.context.density }, // The screen pixel density
