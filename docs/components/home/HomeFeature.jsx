@@ -25,7 +25,7 @@ class HomeFeature extends ReactCSS.Component {
           backgroundImage: 'url("docs/images/react-context-bg.jpg")',
           backgroundPosition: 'center center',
           backgroundSize: 'cover',
-          transition: 'all 200ms linear'
+          transition: 'all 400ms linear'
         },
         title: {
           paddingTop: '100px',
@@ -71,12 +71,11 @@ class HomeFeature extends ReactCSS.Component {
 `;
 
     var bg, transition;
+    transition = 'background 400ms linear';
     if (this.context.focus) {
       bg = '#2A5881';
-      transition = 'background 400ms linear';
     } else {
       bg = '#666';
-      transition = 'background 1000ms linear';
     }
 
     return (
