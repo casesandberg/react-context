@@ -69,4 +69,73 @@ gulp.task('docs', function(done) {
   });
 });
 
+
+gulp.task('static', function(done){
+
+  prodConfig = {
+    entry: ['./docs/index.js'],
+    output: {
+      path: path.join(__dirname, '/build'),
+      filename: 'bundle.js',
+      publicPath: '/build/'
+    },
+    module: {
+      loaders: [{
+          test: /\.jsx$/,
+          exclude: /node_modules/,
+          loaders: ['jsx-loader', 'babel-loader', 'react-map-styles']
+        }, {
+          test: /\.coffee$/,
+          loaders: ['coffee-loader']
+        }, {
+          test: /\.cjsx$/,
+          loaders: ['coffee-jsx-loader', 'react-map-styles']
+        }, {
+          test: /\.css$/,
+          loaders: [ 'style-loader', 'css-loader' ]
+        }, {
+          test: /\.md$/,
+          loaders: [ 'html-loader' ]
+        }
+      ]
+    },
+    resolve: {
+      alias: {
+        'react-context': path.resolve(__dirname, './src/context.jsx'),
+        'react': path.resolve(__dirname, './node_modules/react')
+      },
+      extensions: ['', '.js', '.coffee', '.jsx', '.cjsx'],
+      fallback: [path.resolve(__dirname, './modules')]
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.DedupePlugin(),
+      // new webpack.optimize.UglifyJsPlugin({
+      //   mangle: {
+      //     except: ['exports', 'require']
+      // },
+      //   sourceMap: false,
+      //   output: {comments: false}
+      // }),
+      // new webpack.optimize.CommonsChunkPlugin("common.js")
+    ],
+    devtool: 'eval',
+    quiet: true
+  };
+
+  webpack(prodConfig, function(err, stats){
+
+    if(err) {
+      throw new Error(err);
+    }
+
+    done();
+  });
+});
+
+
 gulp.task('default', ['docs']);
