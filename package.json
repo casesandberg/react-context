@@ -1,0 +1,45 @@
+{
+  "name": "react-context",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/context.jsx",
+  "dependencies": {
+    "highlight.js": "^8.6.0",
+    "react": "^0.13.3",
+    "reactcss": "^0.3.2",
+    "remarkable": "^1.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.3.1",
+    "css-loader": "^0.15.1",
+    "gulp": "^3.9.0",
+    "html-loader": "^0.3.0",
+    "jsx-loader": "^0.13.2",
+    "node-libs-browser": "^0.5.2",
+    "normalize.css": "^3.0.3",
+    "react-hot-loader": "^1.2.7",
+    "react-map-styles": "^0.2.0",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casesandberg/react-context.git"
+  },
+  "keywords": [
+    "react",
+    "context",
+    "react-context"
+  ],
+  "author": "case <case@casesandberg.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/casesandberg/react-context/issues"
+  },
+  "homepage": "https://github.com/casesandberg/react-context#readme"
+}
