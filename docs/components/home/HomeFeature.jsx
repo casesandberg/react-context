@@ -90,6 +90,13 @@ class HomeFeature extends ReactCSS.Component {
           .snippet .hljs-number {
             color: #9F6EC9;
           }
+          .flexbox-fix {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+          }
         `}</style>
 
         <div is="bg" />
