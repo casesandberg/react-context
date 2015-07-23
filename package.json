@@ -1,7 +1,7 @@
 {
   "name": "react-context",
   "version": "0.0.1",
-  "description": "",
+  "description": "Helpful Properties with React Context",
   "main": "src/context.jsx",
   "dependencies": {
     "highlight.js": "^8.6.0",
@@ -24,9 +24,6 @@
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/casesandberg/react-context.git"
@@ -41,5 +38,5 @@
   "bugs": {
     "url": "https://github.com/casesandberg/react-context/issues"
   },
-  "homepage": "https://github.com/casesandberg/react-context#readme"
+  "homepage": "http://casesandberg.github.io/react-context/"
 }

@@ -19,7 +19,7 @@ config = {
         {
           exclude: /node_modules/,
           test: /\.js$/,
-          loaders: ['react-hot-loader']
+          loaders: ['react-hot-loader', 'babel-loader']
         }, {
           test: /\.jsx$/,
           exclude: /node_modules/,
@@ -81,15 +81,13 @@ gulp.task('static', function(done){
     },
     module: {
       loaders: [{
+          exclude: /node_modules/,
+          test: /\.js$/,
+          loaders: ['babel-loader']
+        }, {
           test: /\.jsx$/,
           exclude: /node_modules/,
           loaders: ['jsx-loader', 'babel-loader', 'react-map-styles']
-        }, {
-          test: /\.coffee$/,
-          loaders: ['coffee-loader']
-        }, {
-          test: /\.cjsx$/,
-          loaders: ['coffee-jsx-loader', 'react-map-styles']
         }, {
           test: /\.css$/,
           loaders: [ 'style-loader', 'css-loader' ]
