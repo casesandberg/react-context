@@ -14,5 +14,5 @@ var Root = React.createClass({
   }
 });
 
-
+// Wrap your top-most export
 module.exports = context(Root);

@@ -5,9 +5,11 @@ var React = require('react');
 var context = require('react-context');
 
 
+
 var Child = React.createClass({
 
-  contextTypes: context.types(),
+  // subscribe to all the contextTypes
+  contextTypes: context.subscribe(),
 
   render(){
     var contexts = [];
@@ -16,9 +18,7 @@ var Child = React.createClass({
       contexts.push(<div key={ key }><span>{ key }:</span> <span>{ value.toString() }</span></div>);
     }
     return(
-      <div>
-        { contexts }
-      </div>
+      <div>{ contexts }</div>
     )
   }
 });
