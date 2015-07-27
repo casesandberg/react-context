@@ -216,12 +216,10 @@ var context = function(Component) {
         top: '-1000px !important',
       };
 
-      return (
-        <div>
-          <div ref="fakeAd" className={ fakeAdClasses } style={ fakeAdStyles } />
-          <Component {...this.props} />
-        </div>
-      )
+      return React.createElement('div', null,
+        React.createElement('div', { ref: "fakeAd", className: fakeAdClasses, style: fakeAdStyles }),
+        React.createElement(Component, this.props)
+      );
     }
   });
 

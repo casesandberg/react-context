@@ -2,7 +2,7 @@
   "name": "react-context",
   "version": "0.0.1",
   "description": "Helpful Properties with React Context",
-  "main": "src/context.jsx",
+  "main": "src/context",
   "dependencies": {
     "highlight.js": "^8.6.0",
     "react": "^0.13.3",

@@ -35,7 +35,7 @@ config = {
     },
     resolve: {
       alias: {
-        'react-context': path.resolve(__dirname, './src/context.jsx'),
+        'react-context': path.resolve(__dirname, './src/context'),
         'react': path.resolve(__dirname, './node_modules/react')
       },
       extensions: ['', '.js', '.jsx'],
@@ -99,7 +99,7 @@ gulp.task('static', function(done){
     },
     resolve: {
       alias: {
-        'react-context': path.resolve(__dirname, './src/context.jsx'),
+        'react-context': path.resolve(__dirname, './src/context'),
         'react': path.resolve(__dirname, './node_modules/react')
       },
       extensions: ['', '.js', '.coffee', '.jsx', '.cjsx'],
