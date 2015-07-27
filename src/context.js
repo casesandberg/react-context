@@ -57,16 +57,32 @@ var context = function(Component) {
     // http://jsfiddle.net/ChristianL/AVyND/
     checkOS: function() {
       var os;
-      var clientStrings = [
-          { s:'Windows', r:/(Windows)/ },
-          { s:'Android', r:/Android/ },
-          { s:'Open BSD', r:/OpenBSD/ },
-          { s:'Linux', r:/(Linux|X11)/ },
-          { s:'iOS', r:/(iPhone|iPad|iPod)/ },
-          { s:'Mac', r:/Mac/ },
-          { s:'UNIX', r:/UNIX/ },
-          { s:'Robot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/ }
-      ];
+      var clientStrings = [{
+        s:'Windows',
+        r:/(Windows)/
+      }, {
+        s:'Android',
+        r:/Android/
+      }, {
+        s:'Open BSD',
+        r:/OpenBSD/
+      }, {
+        s:'Linux',
+        r:/(Linux|X11)/
+      }, {
+        s:'iOS',
+        r:/(iPhone|iPad|iPod)/
+      }, {
+        s:'Mac',
+        r:/Mac/
+      }, {
+        s:'UNIX',
+        r:/UNIX/
+      }, {
+        s:'Robot',
+        r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/
+      }];
+
       for (var i = 0; i < clientStrings.length; i++) {
         var cs = clientStrings[i];
         if (cs.r.test(navigator.userAgent)) {
@@ -84,47 +100,47 @@ var context = function(Component) {
       var verOffset;
 
       if ((verOffset = UA.indexOf('Opera')) > -1) {
-          browser = 'Opera';
-          version = UA.substring(verOffset + 6);
-          if ((verOffset = UA.indexOf('Version')) > -1) {
-              version = UA.substring(verOffset + 8);
-          }
+        browser = 'Opera';
+        version = UA.substring(verOffset + 6);
+        if ((verOffset = UA.indexOf('Version')) > -1) {
+            version = UA.substring(verOffset + 8);
+        }
       }
       else if ((verOffset = UA.indexOf('MSIE')) > -1) {
-          browser = 'Internet Explorer';
-          version = UA.substring(verOffset + 5);
+        browser = 'Internet Explorer';
+        version = UA.substring(verOffset + 5);
       }
       else if ((verOffset = UA.indexOf('Chrome')) > -1) {
-          browser = 'Chrome';
-          version = UA.substring(verOffset + 7);
+        browser = 'Chrome';
+        version = UA.substring(verOffset + 7);
       }
       else if ((verOffset = UA.indexOf('Safari')) > -1) {
-          browser = 'Safari';
-          version = UA.substring(verOffset + 7);
-          if ((verOffset = UA.indexOf('Version')) > -1) {
-              version = UA.substring(verOffset + 8);
-          }
+        browser = 'Safari';
+        version = UA.substring(verOffset + 7);
+        if ((verOffset = UA.indexOf('Version')) > -1) {
+          version = UA.substring(verOffset + 8);
+        }
       }
       else if ((verOffset = UA.indexOf('Firefox')) > -1) {
-          browser = 'Firefox';
-          version = UA.substring(verOffset + 8);
+        browser = 'Firefox';
+        version = UA.substring(verOffset + 8);
       }
       else if (UA.indexOf('Trident/') > -1) {
-          browser = 'Internet Explorer';
-          version = UA.substring(UA.indexOf('rv:') + 3);
+        browser = 'Internet Explorer';
+        version = UA.substring(UA.indexOf('rv:') + 3);
       }
       else if ((nameOffset = UA.lastIndexOf(' ') + 1) < (verOffset = UA.lastIndexOf('/'))) {
-          browser = UA.substring(nameOffset, verOffset);
-          version = UA.substring(verOffset + 1);
-          if (browser.toLowerCase() == browser.toUpperCase()) {
-              browser = navigator.appName;
-          }
+        browser = UA.substring(nameOffset, verOffset);
+        version = UA.substring(verOffset + 1);
+        if (browser.toLowerCase() == browser.toUpperCase()) {
+          browser = navigator.appName;
+        }
       }
 
       return {
         browser: browser,
         version: version
-      }
+      };
     },
 
     componentDidMount: function() {
@@ -132,7 +148,6 @@ var context = function(Component) {
       window.addEventListener('focus', this.handleFocus, false);
       window.addEventListener('blur', this.handleFocus, false);
       window.addEventListener('scroll', this.handleScroll, false);
-
       this.checkForAdBlock();
     },
 
@@ -171,29 +186,27 @@ var context = function(Component) {
     checkForAdBlock: function(){
       var ad = React.findDOMNode( this.refs.fakeAd );
 
-      if (window.document.body.getAttribute('abp') !== null ||
-          ad.offsetParent === null ||
-          ad.offsetHeight == 0 ||
-          ad.offsetLeft == 0 ||
-          ad.offsetTop == 0 ||
-          ad.offsetWidth == 0 ||
-          ad.clientHeight == 0 ||
-          ad.clientWidth == 0 ) {
-            this.setState({ adBlock: true });
-          }
+      if (ad) {
+        if (window.document.body.getAttribute('abp') !== null ||
+        ad.offsetParent === null || ad.offsetHeight === 0 ||
+        ad.offsetLeft === 0 || ad.offsetTop === 0 ||
+        ad.offsetWidth === 0 || ad.clientHeight === 0 ||
+        ad.clientWidth === 0 ) {
+          this.setState({ adBlock: true });
+        }
 
-      if (window.getComputedStyle !== undefined) {
-    	  var adStyles = window.getComputedStyle(ad, null);
+        if (window.getComputedStyle !== undefined) {
+      	  var adStyles = window.getComputedStyle(ad, null);
 
-        if (adStyles.getPropertyValue('display') == 'none' ||
-            adStyles.getPropertyValue('visibility') == 'hidden') {
-    		      this.setState({ adBlock: true });
-    		}
+          if (adStyles.getPropertyValue('display') == 'none' ||
+          adStyles.getPropertyValue('visibility') == 'hidden') {
+      		  this.setState({ adBlock: true });
+      		}
+        }
       }
     },
 
     render: function(){
-
       var fakeAdClasses = 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links';
       var fakeAdStyles = {
         width: '1px !important',
@@ -201,14 +214,12 @@ var context = function(Component) {
         position: 'absolute !important',
         left: '-10000px !important',
         top: '-1000px !important',
-      }
+      };
 
-      return (
-        <div>
-          <div ref="fakeAd" className={ fakeAdClasses } style={ fakeAdStyles } />
-          <Component {...this.props} />
-        </div>
-      )
+      return React.createElement('div', null,
+        React.createElement('div', { ref: "fakeAd", className: fakeAdClasses, style: fakeAdStyles }),
+        React.createElement(Component, this.props)
+      );
     }
   });
 

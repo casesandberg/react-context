@@ -71,7 +71,7 @@ module.exports = class DocsSidebar extends ReactCSS.Component {
       <div is="sidebar">
 
         <div is="star">
-          <iframe src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=reactcss&type=star&count=true&size=large" scrolling="0" width="160px" height="30px" frameBorder="0"></iframe>
+          <iframe src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=react-context&type=star&count=true&size=large" scrolling="0" width="160px" height="30px" frameBorder="0"></iframe>
         </div>
 
         { sidebarItems }

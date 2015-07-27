@@ -163,7 +163,7 @@ class HomeBody extends ReactCSS.Component {
               <Raised is="Docs">
                 <div is="npm">
                   <div is="star">
-                    <iframe src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=reactcss&type=star&count=true&size=large" scrolling="0" width="160px" height="30px" frameBorder="0"></iframe>
+                    <iframe src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=react-context&type=star&count=true&size=large" scrolling="0" width="160px" height="30px" frameBorder="0"></iframe>
                   </div>
                   <Code file={'---\nlineDecoration: $\n\n---\nnpm install react-context\n'} borders />
                 </div>
