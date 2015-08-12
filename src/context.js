@@ -231,7 +231,8 @@ context.subscribe = function(lookup){
     return contextTypes;
   } else {
     var customTypes = {};
-    for (var type of lookup) {
+    for (var i = 0; i < lookup.length; i++) {
+      var type = lookup[i]
       if (contextTypes[type]) {
         customTypes[type] = contextTypes[type];
       } else {
