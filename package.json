@@ -1,6 +1,6 @@
 {
   "name": "react-context",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Helpful Properties with React Context",
   "main": "src/context",
   "dependencies": {
