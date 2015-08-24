@@ -98,6 +98,7 @@ var context = function(Component) {
       var browser;
       var version;
       var verOffset;
+      var nameOffset;
 
       if ((verOffset = UA.indexOf('Opera')) > -1) {
         browser = 'Opera';
