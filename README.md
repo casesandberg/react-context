@@ -15,13 +15,13 @@ var Component = React.createClass({
 
   render(){
 
-    if (this.state.os === 'Windows') {
+    if (this.context.os === 'Windows') {
       var downloadLink = 'http://some.url/downloads/App.exe';
-    } else if (this.state.os === 'Mac') {
+    } else if (this.context.os === 'Mac') {
       var downloadLink = 'http://some.url/downloads/App.app';
-    } else if (this.state.os === 'Android') {
+    } else if (this.context.os === 'Android') {
       var downloadLink = 'https://play.google.com/store/apps/details?id=com.app.some';
-    } else if (this.state.os === 'iOS') {
+    } else if (this.context.os === 'iOS') {
       var downloadLink = 'https://itunes.apple.com/us/app/someapp/id12345678';
     } else {
       var downloadLink = 'http://some.url/downloads/';
