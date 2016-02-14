@@ -4,7 +4,7 @@
 * **Display Properties** - Density, Scroll, Width and Height
 * **Device Properties** - Language, OS, Browser and Browser Version
 
-```javascript
+```js
 var React = require('react');
 var context = require('react-context');
 
@@ -13,23 +13,28 @@ var Component = React.createClass({
   // subscribe to all the contextTypes
   contextTypes: context.subscribe(['os']),
 
-  render(){
+  render() {
+    var downloadLink;
 
-    if (this.state.os === 'Windows') {
-      var downloadLink = 'http://some.url/downloads/App.exe';
-    } else if (this.state.os === 'Mac') {
-      var downloadLink = 'http://some.url/downloads/App.app';
-    } else if (this.state.os === 'Android') {
-      var downloadLink = 'https://play.google.com/store/apps/details?id=com.app.some';
-    } else if (this.state.os === 'iOS') {
-      var downloadLink = 'https://itunes.apple.com/us/app/someapp/id12345678';
-    } else {
-      var downloadLink = 'http://some.url/downloads/';
+    switch (this.state.os) {
+      case 'Windows':
+        downloadLink = 'http://some.url/downloads/App.exe';
+        break;
+      case 'Mac':
+        downloadLink = 'http://some.url/downloads/App.app';
+        break;
+      case 'Android':
+        downloadLink = 'https://play.google.com/store/apps/details?id=com.app.some';
+        break;
+      case 'iOS':
+        downloadLink = 'https://itunes.apple.com/us/app/someapp/id12345678';
+        break;
+      default:
+        downloadLink = 'http://some.url/downloads/';
+        break;
     }
 
-    return(
-      <a href={ downloadLink }>Download App</div>
-    )
+    return <a href={ downloadLink }>Download App</div>
   }
 });
 ```
@@ -43,12 +48,12 @@ npm install react-context --save
 ### Wrap Root
 Wrap your top-most component with `react-context`.
 
-```javascript
+```js
 var React = require('react');
 var context = require('react-context');
 
 var Root = React.createClass({
-  render(){
+  render() {
     return <div>Root</div>
   }
 });
