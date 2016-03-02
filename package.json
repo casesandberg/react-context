@@ -4,22 +4,22 @@
   "description": "Helpful Properties with React Context",
   "main": "src/context",
   "dependencies": {
-    "react": "^0.13.3",
-    "reactcss": "^0.3.2"
+    "react": "^0.14.7",
+    "reactcss": "^0.4.5"
   },
   "devDependencies": {
-    "babel-loader": "^5.3.1",
-    "css-loader": "^0.15.1",
+    "babel-loader": "^6.2.4",
+    "css-loader": "^0.23.1",
     "gulp": "^3.9.0",
-    "highlight.js": "^8.6.0",
-    "html-loader": "^0.3.0",
+    "highlight.js": "^9.2.0",
+    "html-loader": "^0.4.3",
     "jsx-loader": "^0.13.2",
-    "node-libs-browser": "^0.5.2",
+    "node-libs-browser": "^1.0.0",
     "normalize.css": "^3.0.3",
     "react-hot-loader": "^1.2.7",
-    "react-map-styles": "^0.2.0",
+    "react-map-styles": "^0.3.0",
     "remarkable": "^1.6.0",
-    "style-loader": "^0.12.3",
+    "style-loader": "^0.13.0",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
   },
