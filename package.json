@@ -19,7 +19,7 @@
     "react-hot-loader": "^1.2.7",
     "react-map-styles": "^0.3.0",
     "remarkable": "^1.6.0",
-    "style-loader": "^0.13.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
   },
