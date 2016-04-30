@@ -4,7 +4,7 @@
   "description": "Helpful Properties with React Context",
   "main": "src/context",
   "dependencies": {
-    "react": "^0.14.7",
+    "react": "^15.0.2",
     "reactcss": "^0.4.5"
   },
   "devDependencies": {
