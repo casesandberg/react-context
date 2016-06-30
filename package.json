@@ -15,7 +15,7 @@
     "html-loader": "^0.4.3",
     "jsx-loader": "^0.13.2",
     "node-libs-browser": "^1.0.0",
-    "normalize.css": "^3.0.3",
+    "normalize.css": "^4.2.0",
     "react-hot-loader": "^1.2.7",
     "react-map-styles": "^0.3.0",
     "remarkable": "^1.6.0",
