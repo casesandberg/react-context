@@ -11,7 +11,7 @@
     "babel-loader": "^6.2.4",
     "css-loader": "^0.23.1",
     "gulp": "^3.9.0",
-    "highlight.js": "^9.2.0",
+    "highlight.js": "^9.6.0",
     "html-loader": "^0.4.3",
     "jsx-loader": "^0.13.2",
     "node-libs-browser": "^1.0.0",
