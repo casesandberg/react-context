@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",
-    "css-loader": "^0.23.1",
+    "css-loader": "^0.25.0",
     "gulp": "^3.9.0",
     "highlight.js": "^9.2.0",
     "html-loader": "^0.4.3",
